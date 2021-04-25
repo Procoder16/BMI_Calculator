@@ -22,12 +22,14 @@ void changeColour(int cardNumber) {
     //male card was tapped
     if (maleCardColour == inactiveCardsColour) {
       maleCardColour = activeCardsColour;
+      femaleCardColour = inactiveCardsColour;
     } else {
       maleCardColour = inactiveCardsColour;
     }
   } else if (cardNumber == 2) {
     if (femaleCardColour == inactiveCardsColour) {
       femaleCardColour = activeCardsColour;
+      maleCardColour = inactiveCardsColour;
     } else {
       femaleCardColour = inactiveCardsColour;
     }
@@ -49,7 +51,6 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      print('MALE CAR WAS TAPPED!');
                       setState(() {
                         changeColour(1);
                       });
