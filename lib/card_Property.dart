@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+const labelTextStyle = TextStyle(
+  fontSize: 18.0,
+  color: Color(0xFF8D9E98),
+);
+
 class CardProperty extends StatelessWidget {
   CardProperty({this.iconName, this.label});
 
@@ -18,13 +23,7 @@ class CardProperty extends StatelessWidget {
         SizedBox(
           height: 15.0,
         ),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 18.0,
-            color: Color(0xFF8D9E98),
-          ),
-        ),
+        Text(label, style: labelTextStyle),
       ],
     );
   }
