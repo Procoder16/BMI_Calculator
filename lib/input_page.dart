@@ -5,12 +5,33 @@ import 'card_Property.dart';
 import 'reusableCard.dart';
 
 const bottomContainerHeight = 80.0;
-const cardsColour = Color(0xFF1D1E33);
+const activeCardsColour = Color(0xFF1D1E33);
+const inactiveCardsColour = Color(0xFF111328);
 const bottomContainerColour = Color(0xFFEB1555);
 
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
+}
+
+Color maleCardColour = inactiveCardsColour;
+Color femaleCardColour = inactiveCardsColour;
+
+void changeColour(int cardNumber) {
+  if (cardNumber == 1) {
+    //male card was tapped
+    if (maleCardColour == inactiveCardsColour) {
+      maleCardColour = activeCardsColour;
+    } else {
+      maleCardColour = inactiveCardsColour;
+    }
+  } else if (cardNumber == 2) {
+    if (femaleCardColour == inactiveCardsColour) {
+      femaleCardColour = activeCardsColour;
+    } else {
+      femaleCardColour = inactiveCardsColour;
+    }
+  }
 }
 
 class _InputPageState extends State<InputPage> {
@@ -29,20 +50,30 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: () {
                       print('MALE CAR WAS TAPPED!');
+                      setState(() {
+                        changeColour(1);
+                      });
                     },
                     child: ReusableCard(
-                      colour: cardsColour,
+                      colour: maleCardColour,
                       cardChild: CardProperty(
                           iconName: FontAwesomeIcons.mars, label: 'MALE'),
                     ),
                   ),
                 ),
                 Expanded(
-                  child: ReusableCard(
-                    colour: cardsColour,
-                    cardChild: CardProperty(
-                      iconName: FontAwesomeIcons.venus,
-                      label: 'FEMALE',
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        changeColour(2);
+                      });
+                    },
+                    child: ReusableCard(
+                      colour: femaleCardColour,
+                      cardChild: CardProperty(
+                        iconName: FontAwesomeIcons.venus,
+                        label: 'FEMALE',
+                      ),
                     ),
                   ),
                 ),
@@ -51,7 +82,7 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: ReusableCard(
-              colour: cardsColour,
+              colour: activeCardsColour,
             ),
           ),
           Expanded(
@@ -59,12 +90,12 @@ class _InputPageState extends State<InputPage> {
             children: [
               Expanded(
                 child: ReusableCard(
-                  colour: cardsColour,
+                  colour: activeCardsColour,
                 ),
               ),
               Expanded(
                 child: ReusableCard(
-                  colour: cardsColour,
+                  colour: activeCardsColour,
                 ),
               ),
             ],
