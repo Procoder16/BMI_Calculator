@@ -14,3 +14,28 @@ const kBoldLabelStyle = TextStyle(
   fontSize: 50.0,
   fontWeight: FontWeight.w900,
 );
+
+const kBottomButtonTextStyle = TextStyle(
+  fontSize: 25.0,
+  fontWeight: FontWeight.bold,
+);
+
+const kResultsPageHeading = TextStyle(
+  fontSize: 50.0,
+  fontWeight: FontWeight.bold,
+);
+
+const kResultText = TextStyle(
+  color: Color(0xFF24d876),
+  fontSize: 22.0,
+  fontWeight: FontWeight.bold,
+);
+
+const kBmiResult = TextStyle(
+  fontSize: 100.0,
+  fontWeight: FontWeight.bold,
+);
+
+const kResultInterpretation = TextStyle(
+  fontSize: 22.0,
+);
