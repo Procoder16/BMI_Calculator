@@ -3,16 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'card_Property.dart';
 import 'reusableCard.dart';
+import 'constants.dart';
 
 enum Gender {
   male,
   female,
 }
-
-const bottomContainerHeight = 80.0;
-const activeCardsColour = Color(0xFF1D1E33);
-const inactiveCardsColour = Color(0xFF111328);
-const bottomContainerColour = Color(0xFFEB1555);
 
 class InputPage extends StatefulWidget {
   @override
@@ -20,28 +16,6 @@ class InputPage extends StatefulWidget {
 }
 
 Gender selectedGender;
-
-// Color maleCardColour = inactiveCardsColour;
-// Color femaleCardColour = inactiveCardsColour;
-//
-// void changeColour(Gender inputGender) {
-//   if (inputGender == Gender.male) {
-//     //male card was tapped
-//     if (maleCardColour == inactiveCardsColour) {
-//       maleCardColour = activeCardsColour;
-//       femaleCardColour = inactiveCardsColour;
-//     } else {
-//       maleCardColour = inactiveCardsColour;
-//     }
-//   } else if (inputGender == Gender.female) {
-//     if (femaleCardColour == inactiveCardsColour) {
-//       femaleCardColour = activeCardsColour;
-//       maleCardColour = inactiveCardsColour;
-//     } else {
-//       femaleCardColour = inactiveCardsColour;
-//     }
-//   }
-// }
 
 class _InputPageState extends State<InputPage> {
   @override
@@ -57,36 +31,32 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReusableCard(
+                    tapDetector: () {
                       setState(() {
                         selectedGender = Gender.male;
                       });
                     },
-                    child: ReusableCard(
-                      colour: selectedGender == Gender.male
-                          ? activeCardsColour
-                          : inactiveCardsColour,
-                      cardChild: CardProperty(
-                          iconName: FontAwesomeIcons.mars, label: 'MALE'),
-                    ),
+                    colour: selectedGender == Gender.male
+                        ? kActiveCardsColour
+                        : kInactiveCardsColour,
+                    cardChild: CardProperty(
+                        iconName: FontAwesomeIcons.mars, label: 'MALE'),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReusableCard(
+                    tapDetector: () {
                       setState(() {
                         selectedGender = Gender.female;
                       });
                     },
-                    child: ReusableCard(
-                      colour: selectedGender == Gender.female
-                          ? activeCardsColour
-                          : inactiveCardsColour,
-                      cardChild: CardProperty(
-                        iconName: FontAwesomeIcons.venus,
-                        label: 'FEMALE',
-                      ),
+                    colour: selectedGender == Gender.female
+                        ? kActiveCardsColour
+                        : kInactiveCardsColour,
+                    cardChild: CardProperty(
+                      iconName: FontAwesomeIcons.venus,
+                      label: 'FEMALE',
                     ),
                   ),
                 ),
@@ -95,7 +65,15 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: ReusableCard(
-              colour: activeCardsColour,
+              colour: kActiveCardsColour,
+              cardChild: Column(
+                children: [
+                  Text(
+                    'HEIGHT',
+                    style: kLabelTextStyle,
+                  )
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -103,19 +81,19 @@ class _InputPageState extends State<InputPage> {
             children: [
               Expanded(
                 child: ReusableCard(
-                  colour: activeCardsColour,
+                  colour: kActiveCardsColour,
                 ),
               ),
               Expanded(
                 child: ReusableCard(
-                  colour: activeCardsColour,
+                  colour: kActiveCardsColour,
                 ),
               ),
             ],
           )),
           Container(
-            color: bottomContainerColour,
-            height: bottomContainerHeight,
+            color: kBottomContainerColour,
+            height: kBottomContainerHeight,
             width: double.infinity,
             margin: EdgeInsets.only(top: 10.0),
           )
