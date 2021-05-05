@@ -5,7 +5,6 @@ class ReusableCard extends StatelessWidget {
 
   final Color colour;
   final Widget cardChild;
-
   final Function tapDetector;
 
   @override
@@ -16,6 +15,9 @@ class ReusableCard extends StatelessWidget {
         child: cardChild,
         margin: EdgeInsets.all(15.0),
         decoration: BoxDecoration(
+          border: Border.all(
+            color: Color(0xFFEDE5CC),
+          ),
           borderRadius: BorderRadius.circular(10.0),
           color: colour,
         ),

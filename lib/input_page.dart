@@ -7,6 +7,7 @@ import 'constants.dart';
 import 'results_page.dart';
 import 'Round_Icon.dart';
 import 'Bottom _Button.dart';
+import 'Calculator_Brain.dart';
 
 enum Gender {
   male,
@@ -30,7 +31,12 @@ class _InputPageState extends State<InputPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('BMI CALCULATOR'),
+        title: Text(
+          'BMI CALCULATOR',
+          style: TextStyle(
+            color: Color(0xFFEDE5CC),
+          ),
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -49,7 +55,9 @@ class _InputPageState extends State<InputPage> {
                         ? kActiveCardsColour
                         : kInactiveCardsColour,
                     cardChild: CardProperty(
-                        iconName: FontAwesomeIcons.mars, label: 'MALE'),
+                      iconName: FontAwesomeIcons.mars,
+                      label: 'MALE',
+                    ),
                   ),
                 ),
                 Expanded(
@@ -73,13 +81,13 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: ReusableCard(
-              colour: kActiveCardsColour,
+              colour: kInactiveCardsColour,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'HEIGHT',
-                    style: kLabelTextStyle,
+                    style: kInactiveLabelTextStyle,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -95,16 +103,16 @@ class _InputPageState extends State<InputPage> {
                       ),
                       Text(
                         'cm',
-                        style: kLabelTextStyle,
+                        style: kInactiveLabelTextStyle,
                       ),
                     ],
                   ),
                   SliderTheme(
                     data: SliderTheme.of(context).copyWith(
-                      activeTrackColor: Colors.white,
+                      activeTrackColor: Color(0xFFEDE5CC),
                       inactiveTrackColor: Color(0xFF8D8E98),
-                      thumbColor: Color(0xFFEB1555),
-                      overlayColor: Color(0x29EB1555),
+                      thumbColor: Color(0xFFEDE5CC),
+                      overlayColor: Color(0x29EDE5CC),
                       thumbShape:
                           RoundSliderThumbShape(enabledThumbRadius: 15.0),
                       overlayShape:
@@ -130,13 +138,13 @@ class _InputPageState extends State<InputPage> {
             children: [
               Expanded(
                 child: ReusableCard(
-                  colour: kActiveCardsColour,
+                  colour: kInactiveCardsColour,
                   cardChild: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'WEIGHT',
-                        style: kLabelTextStyle,
+                        style: kInactiveLabelTextStyle,
                       ),
                       Text(
                         weight.toString(),
@@ -172,13 +180,13 @@ class _InputPageState extends State<InputPage> {
               ),
               Expanded(
                 child: ReusableCard(
-                  colour: kActiveCardsColour,
+                  colour: kInactiveCardsColour,
                   cardChild: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'AGE',
-                        style: kLabelTextStyle,
+                        style: kInactiveLabelTextStyle,
                       ),
                       Text(
                         age.toString(),
@@ -217,9 +225,18 @@ class _InputPageState extends State<InputPage> {
           BottomButton(
               buttonTitle: 'CALCULATE',
               onTap: () {
+                CalculatorBrain calc =
+                    CalculatorBrain(height: height, weight: weight);
+
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ResultsPage()),
+                  MaterialPageRoute(
+                    builder: (context) => ResultsPage(
+                      result: calc.calculateBMI(),
+                      resultText: calc.getResult(),
+                      resultInterpretation: calc.getInterpretation(),
+                    ),
+                  ),
                 );
               }),
         ],

@@ -15,11 +15,12 @@ class CardProperty extends StatelessWidget {
         Icon(
           iconName,
           size: 80.0,
+          color: Color(0xFFEDE5CC),
         ),
         SizedBox(
           height: 15.0,
         ),
-        Text(label, style: kLabelTextStyle),
+        Text(label, style: kInactiveLabelTextStyle),
       ],
     );
   }

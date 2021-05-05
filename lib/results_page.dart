@@ -4,13 +4,26 @@ import 'package:bmi_calculator/reusableCard.dart';
 import 'package:flutter/material.dart';
 
 class ResultsPage extends StatelessWidget {
-  const ResultsPage({Key key}) : super(key: key);
+  ResultsPage(
+      {@required this.result,
+      @required this.resultInterpretation,
+      @required this.resultText});
+
+  final String resultText;
+  final String resultInterpretation;
+  final String result;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BMI CALCULATOR'),
+        title: Text(
+          'BMI CALCULATOR',
+          style: TextStyle(
+            color: Color(0xFFEDE5CC),
+          ),
+        ),
+        centerTitle: true,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -28,18 +41,18 @@ class ResultsPage extends StatelessWidget {
           Expanded(
             flex: 5,
             child: ReusableCard(
-              colour: kActiveCardsColour,
+              colour: kInactiveCardsColour,
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'NORMAL',
+                    resultText.toUpperCase(),
                     style: kResultText,
                   ),
-                  Text('18.3', style: kBmiResult),
+                  Text(result, style: kBmiResult),
                   Text(
-                    'You are underweight. You need to eat more.',
+                    resultInterpretation,
                     textAlign: TextAlign.center,
                     style: kResultInterpretation,
                   ),
