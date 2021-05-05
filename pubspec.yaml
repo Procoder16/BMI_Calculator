@@ -19,3 +19,12 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - images/
+  fonts:
+    - family: FreckleFace
+      fonts:
+        - asset: fonts/FreckleFace-Regular.ttf
+
+
+
